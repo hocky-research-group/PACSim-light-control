@@ -9,9 +9,7 @@ Steven van Kesteren, Nicole Smina, Shihao Zang, Cheuk Wai Leung, Glen Hocky and 
 
 Example inputs and analysis scripts for this paper can be found at [a GitHub page for that paper](https://github.com/hocky-research-group/light_controlled_crystallization)
 
-## Installation instructions
-
-Install and setup [Git Large File Storage](https://git-lfs.com) (used for the large files in the Literature directory.)
+# Installation instructions
 
 ## Dependencies
 
