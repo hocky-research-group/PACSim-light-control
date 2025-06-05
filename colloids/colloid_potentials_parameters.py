@@ -35,6 +35,13 @@ class ColloidPotentialsParameters(object):
         The value of the dielectric constant must be greater than zero.
         Defaults to 80.0 (i.e., water).
     :type dielectric_constant: float
+    :param psi_scale:
+        Scale factor to adjust the charge value of Type 1 particles (used in conjunction with an UpdateReporter).
+        The particle charge is a per-particle parameter that cannot be updated in context during a simulation, but since
+        electrostatic potential is linear with respect to charge, introducing this scale factor that can be treated as a global
+        parameter has the same mathematical effect on the forces. 
+        Defaults to 1.0 (i.e. no scaling effect). Can be positive or negative.
+    :type psi_scale: float
 
     :raises TypeError:
         If the brush_density, brush_length, debye_length, or temperature is not a Quantity with a proper unit.
