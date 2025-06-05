@@ -30,9 +30,9 @@ class UpdateReporterAbstract(ABC):
     :type final_update_step: int
     :param start_value:
         The start value of the global parameter.
-        OpenMM does not store the units of global parameters, so the user must make sure to pass in a quantity with a
-        sensible unit here. This quantity will only be converted to the unit system of OpenMM.
-    :type start_value: unit.Quantity
+        OpenMM does not store the units of global parameters, so if using a quantity with a unit, the user must make sure to 
+        pass in a sensible unit here. This quantity will only be converted to the unit system of OpenMM.
+    :type start_value: Union[unit.Quantity, float]
     :param global_parameter_name:
         The name of the global parameter to be updated.
         This must be one of the global parameters passed into any of the OpenMM Force objects.
@@ -89,10 +89,6 @@ class UpdateReporterAbstract(ABC):
         if not print_interval > 0:
             raise ValueError("The print frequency must be greater than zero.")
         self._print_interval = print_interval
-        '''if (not append_file
-                and abs(self._start_value - simulation.context.getParameters()[self._global_parameter_name]) > 1.0e-12):
-            warnings.warn("The start value of the global parameter does not match the value in the OpenMM simulation.")
-            simulation.context.setParameter(self._global_parameter_name, self._start_value)'''
         if not append_file:
             print(f"0,{self._start_value}", file=self._file)
 
@@ -193,14 +189,14 @@ class RampUpdateReporter(UpdateReporterAbstract):
     :type global_parameter_name: str
     :param start_value:
         The start value of the global parameter.
-        OpenMM does not store the units of global parameters, so the user must make sure to pass in a quantity with a
-        sensible unit here. This quantity will only be converted to the unit system of OpenMM.
-    :type start_value: unit.Quantity
+        OpenMM does not store the units of global parameters, so if using a quantity with a unit, the user must make sure to 
+        pass in a sensible unit here. This quantity will only be converted to the unit system of OpenMM.
+    :type start_value: Union[unit.Quantity, float]
     :param end_value:
         The end value of the global parameter.
-        OpenMM does not store the units of global parameters, so the user must make sure to pass in a quantity with a
-        sensible unit here. This quantity will only be converted to the unit system of OpenMM.
-    :type end_value: unit.Quantity
+        OpenMM does not store the units of global parameters, so if using a quantity with a unit, the user must make sure to 
+        pass in a sensible unit here. This quantity will only be converted to the unit system of OpenMM.
+    :type end_value: Union[unit.Quantity, float]
     :param print_interval:
         The interval (in time steps) at which the value of the global parameter in the OpenMM simulation is printed
         to the output .csv file.
@@ -285,16 +281,16 @@ class TriangleUpdateReporter(UpdateReporterAbstract):
         The name of the global parameter to be updated.
         This must be one of the global parameters passed into any of the OpenMM Force objects.
     :type global_parameter_name: str
-    :param start_value:
+   :param start_value:
         The start value of the global parameter.
-        OpenMM does not store the units of global parameters, so the user must make sure to pass in a quantity with a
-        sensible unit here. This quantity will only be converted to the unit system of OpenMM.
-    :type start_value: unit.Quantity
+        OpenMM does not store the units of global parameters, so if using a quantity with a unit, the user must make sure to 
+        pass in a sensible unit here. This quantity will only be converted to the unit system of OpenMM.
+    :type start_value: Union[unit.Quantity, float]
     :param end_value:
         The end value of the global parameter.
-        OpenMM does not store the units of global parameters, so the user must make sure to pass in a quantity with a
-        sensible unit here. This quantity will only be converted to the unit system of OpenMM.
-    :type end_value: unit.Quantity
+        OpenMM does not store the units of global parameters, so if using a quantity with a unit, the user must make sure to 
+        pass in a sensible unit here. This quantity will only be converted to the unit system of OpenMM.
+    :type end_value: Union[unit.Quantity, float]
     :param switch_step:
         The number of steps after which this reporter switches from increasing to decreasing (or decreasing to
         increasing) the value of the global parameter.
@@ -398,14 +394,14 @@ class SquaredSinusoidalUpdateReporter(UpdateReporterAbstract):
     :type global_parameter_name: str
     :param start_value:
         The start value of the global parameter.
-        OpenMM does not store the units of global parameters, so the user must make sure to pass in a quantity with a
-        sensible unit here. This quantity will only be converted to the unit system of OpenMM.
-    :type start_value: unit.Quantity
+        OpenMM does not store the units of global parameters, so if using a quantity with a unit, the user must make sure to 
+        pass in a sensible unit here. This quantity will only be converted to the unit system of OpenMM.
+    :type start_value: Union[unit.Quantity, float]
     :param end_value:
         The end value of the global parameter.
-        OpenMM does not store the units of global parameters, so the user must make sure to pass in a quantity with a
-        sensible unit here. This quantity will only be converted to the unit system of OpenMM.
-    :type end_value: unit.Quantity
+        OpenMM does not store the units of global parameters, so if using a quantity with a unit, the user must make sure to 
+        pass in a sensible unit here. This quantity will only be converted to the unit system of OpenMM.
+    :type end_value: Union[unit.Quantity, float]
     :param switch_step:
         The number of steps after which this reporter switches from increasing to decreasing (or decreasing to
         increasing) the value of the global parameter.
