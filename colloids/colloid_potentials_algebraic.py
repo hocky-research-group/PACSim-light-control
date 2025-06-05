@@ -77,7 +77,6 @@ class ColloidPotentialsAlgebraic(ColloidPotentialsAbstract):
         steric_potential = CustomNonbondedForce(
             "select(flag1 * flag2, 0, "
             "step(two_l - h) * "
-            #"steric_prefactor * rs / 2.0 * brush_length * brush_length * ("
             "steric_prefactor * radius_average  * brush_length * brush_length * ("
             "28.0 * ((two_l / h)^0.25 - 1.0) "
             "+ 20.0 / 11.0 * (1.0 - (h / two_l)^2.75)"
@@ -164,6 +163,10 @@ class ColloidPotentialsAlgebraic(ColloidPotentialsAbstract):
         :param substrate_flag:
             If True, the colloid is considered to be a substrate particle.
         :type substrate_flag: bool
+        :param type_flag:
+            For binary particle simulations involving changing particle surface charge. If True, particle is type P (positive). 
+            Otherwise particle is type N (negative).
+        :type type_flag: bool
 
         :raises TypeError:
             If the radius or surface_potential is not a Quantity with a proper unit (via the abstract base class).
